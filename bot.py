@@ -3,6 +3,7 @@ import firebase_admin
 import os
 import requests
 import asyncio
+import json
 
 from datetime import datetime
 from dotenv import load_dotenv
@@ -22,8 +23,9 @@ ROLE = "KT Max"
 # OMDB
 
 # Firebase Connection
-
-cred = credentials.Certificate("C:/Users/mudKI/Downloads/ktcinemabot-2ef82-firebase-adminsdk-fbsvc-5449434d99.json")
+firebase_json = os.getenv("FIREBASE_CREDENTIALS")
+firebase_dict = json.loads(firebase_json)
+cred = credentials.Certificate(firebase_dict)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
